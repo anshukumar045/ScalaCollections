@@ -19,12 +19,21 @@ object DynamicProgrammingExamplesApp extends App{
   }
 
   val startTime = System.nanoTime()
-  val res = recursiveFibonacciNumber(6)
+  val res = recursiveFibonacciNumber(40)
   val endTime = System.nanoTime()
   val diff = endTime - startTime
   println(s"res - $res time taken - $diff")
 
+  // Top Down Approach
+  val fibTopDownApproach : Int => Int = (n: Int) =>
+    if(n == 0) 0 else if (n == 1) 1
+    else (2 to n).foldLeft(Seq(0,1))((acc, v) => acc :+ (acc(v -1) + acc(v-2))).last
 
+  val startTime1 = System.nanoTime()
+  val res1 = fibTopDownApproach(40)
+  val endTime1 = System.nanoTime()
+  val diff1 = endTime1 - startTime1
+  println(s"res - $res1 time taken - $diff1")
 
 
 
