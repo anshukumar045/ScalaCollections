@@ -35,6 +35,19 @@ object DynamicProgrammingExamplesApp extends App{
   val diff1 = endTime1 - startTime1
   println(s"res - $res1 time taken - $diff1")
 
+  // Bottom up Approach
+
+  val fibBottomUpApproach: Int => Int = (n: Int) =>
+    if (n == 0) 0 else if (n == 1) 1
+    else (2 to n).foldLeft(0,1){case((a,b), _) => (b, a+b)}._2
+
+  val startTime2 = System.nanoTime()
+  val res2 = fibBottomUpApproach(40)
+  val endTime2 = System.nanoTime()
+  val diff2 = endTime2 - startTime2
+  println(s"res - $res2 time taken - $diff2")
+
+
 
 
 
