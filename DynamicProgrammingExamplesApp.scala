@@ -47,6 +47,27 @@ object DynamicProgrammingExamplesApp extends App{
   val diff2 = endTime2 - startTime2
   println(s"res - $res2 time taken - $diff2")
 
+  // flowerBox problem
+
+  /**
+   * 3 10 3 1 2
+   * 3 -> 3
+   * 10 -> 10
+   * 10 + 3 = 13
+   */
+
+  def flowerBox(seq: Seq[Int]): Int = seq.foldLeft(0,0){case((a,b), v) => (b, Math.max(a+v,b))}._2
+
+  println(flowerBox(Seq(3,10,3,1,2)))
+
+  // (a,b) v (b, max(a+v,b))
+  // (0,0) v = 3 (0, max(0+3, 0) -> 3)
+  // (0, 3) v = 10 (3, max(0+ 10, 3) -> 10)
+  // (3, 10) v = 3 (10, max(3 + 3, 10) -> 10)
+  // (10, 10) v = 1 (10, max(10+1, 10) -> 11)
+  // (10, 11) v = 2 (10, max(10 + 2, 11) -> 12)
+  // (11,12)
+
 
 
 
