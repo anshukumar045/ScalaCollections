@@ -68,6 +68,32 @@ object DynamicProgrammingExamplesApp extends App{
   // (10, 11) v = 2 (10, max(10 + 2, 11) -> 12)
   // (11,12)
 
+  // Change Making Problem
+  /*
+  Denominations - 5,2,12,19 target = 13 ->(2,2,2,2,5) or -1
+   */
+
+  def minCoins(coins: Array[Int], amount: Int): Int = {
+    // create an array to store the min number of coins for each amount
+    val dp = Array.fill(amount + 1)(Int.MaxValue)
+    dp(0) = 0 // No coins needed for amount 0
+    // iterate thought the amount from 1 to target amount
+    for (i <- 1 to amount){
+      // iterate though each coin
+      for (coin <- coins) {
+        if(i-coin >= 0 && dp(i -coin) != Int.MaxValue) {
+          dp(i) = math.min(dp(i), dp(i-coin) + 1)
+        }
+      }
+    }
+
+    if(dp(amount) == Int.MaxValue) -1 else dp(amount)
+
+   }
+  val coins = Array(5,2,12,19)
+  val target = 13
+  println(minCoins(coins,target))
+
 
 
 
